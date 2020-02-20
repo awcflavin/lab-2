@@ -127,8 +127,8 @@ func main() {
 		},
 		{
 			Name:    "number",
-			Usage:   "Shows a given number of random quotes the Ancestor has to offer blurb",
-			Aliases: []string{"n", "numbers"},
+			Usage:   "Shows a given number of random quotes the Ancestor has to offer",
+			Aliases: []string{"n"},
 			Action: func(c *cli.Context) error {
 				if len(os.Args) != 3 {
 					fmt.Println("Incorrect use of the number command, example of correct usage: ancestorquotes number 3")
