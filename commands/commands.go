@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"time"
+    "unicode"
 )
 
 // AllQuotes prints all quotes.
@@ -189,40 +190,73 @@ func NumberOfQuotes(quotesNumber int) {
 	}
 }
 
+// ContainsRune function to check if a rune is part of an array
+func ContainsRune(arr []rune, r rune) bool {
+   for _, a := range arr {
+      if a == r {
+         return true
+      }
+   }
+   return false
+}
+
 // GuessQuote allows user to play a game where they are shown a blanked out quote.
 // The user then guesses letters and if the letter is correct it is revealed in the quote.
-func Guess(quote string, guesses string) {
+func Guess() {
+    quote := RandomQuote()
     var guess rune
-    var outString string = quote
-    var done bool = false
+    outString := quote
+    done := false
+    var guesses[] rune
+    reader := bufio.NewReader(os.Stdin)
+    var charArray[] string
 
+    
+    quoteLength := len(quote)
+    
     // Outer loop runs until the quote is guessed completely
     for done != true {
         
-        // Iterates through the guesses and blanks out the letters not yet guessed in the quote
-        for c := range guesses {
+        // charArray is reset at the start of each loop
+        charArray = []string{}
+        
+        // Iterate through each character in the quote
+        for i:=0; i<quoteLength; i++ {
             
-            c := rune(c)
-            // If the quote does not contain that character it is blanked out
-            if !strings.ContainsRune(quote, c) {
+            // each character is stored as a rune in char
+            char := []rune(quote)[i]
+            
+            // if the character is a letter and has not been guessed a blank space is added to charArray
+            if unicode.IsLetter(char) && !ContainsRune(guesses, char) {
+                charArray = append(charArray, " ")
                 
-                c := string(c)
-                outString := strings.ReplaceAll(quote, c, " ")
+            // otherwise the character is added to charArray
+            } else {
+                charArray = append(charArray, string(char))
+                
             }
         }
         
+        // the output string is made by joining the characters in charArray together into a single string
+        outString = strings.Join(charArray, "")
+                
+        
         // If the quote is completely guessed the loop exits
-        if (outString == quote) {
-            fmt.Println(quote + "/n Congratulations! You have correctly guessed the quote!")
-            done := true
+        if outString == quote {
+            fmt.Println(quote + "\nCongratulations! You have correctly guessed the quote!")
+            done = true
+            goto done
         }
         
-        fmt.Println("The quote is: " + outString + "/nEnter a letter to guess: ")
-        fmt.Scan(&guess)
-        guesses += string(guess)
+        // prints the blanked out quote and reads in the next guess
+        fmt.Println("\nThe quote is: " + outString + "\nEnter a letter to guess: ")
+        guess, _, _= reader.ReadRune()
+        
+        // excludes the newline character from entry
+        if guess != 10 {
+            guesses = append(guesses, guess)
+        }
+        
+        done:
     }
 }
-    
-        
-        
-
