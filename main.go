@@ -150,11 +150,11 @@ func main() {
         {
             Name:   "guess",
             Usage:  "Shows a blanked out quote and the user must guess the quote letter by letter",
-            Aliases: []string{"g", "guess"},
+            Aliases: []string{"g"},
             Action: func(c *cli.Context) error {
                     commands.Guess()
                     return nil
-            }
+            },
         },
 	}
 
