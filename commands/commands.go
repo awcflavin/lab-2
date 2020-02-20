@@ -188,3 +188,41 @@ func NumberOfQuotes(quotesNumber int) {
 		index++
 	}
 }
+
+// GuessQuote allows user to play a game where they are shown a blanked out quote.
+// The user then guesses letters and if the letter is correct it is revealed in the quote.
+func Guess(quote string, guesses string) {
+    var guess rune
+    var outString string = quote
+    var done bool = false
+
+    // Outer loop runs until the quote is guessed completely
+    for done != true {
+        
+        // Iterates through the guesses and blanks out the letters not yet guessed in the quote
+        for c := range guesses {
+            
+            c := rune(c)
+            // If the quote does not contain that character it is blanked out
+            if !strings.ContainsRune(quote, c) {
+                
+                c := string(c)
+                outString := strings.ReplaceAll(quote, c, " ")
+            }
+        }
+        
+        // If the quote is completely guessed the loop exits
+        if (outString == quote) {
+            fmt.Println(quote + "/n Congratulations! You have correctly guessed the quote!")
+            done := true
+        }
+        
+        fmt.Println("The quote is: " + outString + "/nEnter a letter to guess: ")
+        fmt.Scan(&guess)
+        guesses += string(guess)
+    }
+}
+    
+        
+        
+

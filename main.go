@@ -127,7 +127,7 @@ func main() {
 		},
 		{
 			Name:    "number",
-			Usage:   "Shows a given number of random quotes the Ancestor has to offer",
+			Usage:   "Shows a given number of random quotes the Ancestor has to offer blurb",
 			Aliases: []string{"n", "numbers"},
 			Action: func(c *cli.Context) error {
 				if len(os.Args) != 3 {
@@ -147,6 +147,15 @@ func main() {
 				return nil
 			},
 		},
+        {
+            Name:   "guess",
+            Usage:  "Shows a blanked out quote and the user must guess the quote letter by letter",
+            Aliases: []string{"g", "guess"},
+            Action: func(c *cli.Context) error {
+                    commands.Guess()
+                    return nil
+            }
+        },
 	}
 
 	app.Action = func(c *cli.Context) error {

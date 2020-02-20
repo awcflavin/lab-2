@@ -84,6 +84,7 @@ COMMANDS:
      chat, c        The Ancestor talks with himself in a maddening fashion
      talkback, t    You can talk to the Ancestor and the Ancestor replies back in a crazy manner
      search, s      Searches all quotes the Ancestor has ever said with the word searched in them
+	 guess, g		Game where user guesses the quote letter by letter
      help, h        Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
@@ -185,6 +186,15 @@ The bigger the beast, the greater the glory.
 Another life wasted in the pursuit of glory and gold.
 ```
 
+#### Guess:
+
+Shows blanked out quote and user must guess it letter by letter:
+
+```
+$ ancestorquotes guess
+                  ,                      .
+
+```
 #### Number:
 
 Shows a fixed number of random quotes the Ancestor has to offer:
